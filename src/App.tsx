@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Container } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import SearchInput from './components/SearchInput';
 import RepoList from './components/RepoList';
@@ -8,6 +7,12 @@ import Spinner from './components/Spinner';
 import Header from './components/Header';
 
 import { searchRepository } from './services/api';
+
+interface Repo {
+  name: string;
+  description: string;
+  watchers_count: number;
+}
 
 const App = () => {
   const [isLoading, setLoading] = useState(false);
@@ -35,7 +40,7 @@ const App = () => {
       />
       <main>
         <Spinner isLoading={isLoading} />
-        {repositories.map((repo: any) => {
+        {repositories.map((repo: Repo) => {
           return (
             <RepoList
               name={repo.name}
