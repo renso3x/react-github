@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React + GitHub API
 
-## Available Scripts
+React application to view a list of GitHub repositories with search functionality.
 
-In the project directory, you can run:
+Think about how you would approach the task and try to describe your decisions in the Readme file. We want to find out how you think, how you approach problems and how you communicate your decision and solutions. Imagine you have received this task as a Jira ticket and explain how you build it step by step.
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## The Approach
+I decided to use create-react-app with typescript. Why Typescript? It gives clarity on what is the component about, what are the props, states and etc.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The main file is on the `src/App.tsx`, consist the search input and rendering the repository lists component. `<SearchInput />` is a component where it's duty is to take the search input of the user and has a button. `<App />` will be taking care of the `onSearchInput` event prop that will make a service api `searchRepository` call to the github api, the service will return a lists of repositories. On making the search request `<Spinner/>` will be showed and then when the api will have a response we will set our state that will be containing our repository list and `<RepoList />` will be rendered. I use the approach of smart and dumb components so that it's scalable and easy to use.
 
-### `yarn test`
+For the http request I prefer to us `axios` because It's simple, lightweight and easy to customize.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+For the styling I leverage the bootstrap.
 
-### `yarn build`
+### Packages
+- axios
+- reactstrap
+- bootstrap
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### File Structure
+- src/components/*: All the components of our application.
+- src/services/*: All the api services.
+- src/helpers/*: Shared utility helpers
+- src/index.tsx: entry point
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `yarn eject`
+```bash
+yarn
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Start App
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```javascript
+yarn start
+```
